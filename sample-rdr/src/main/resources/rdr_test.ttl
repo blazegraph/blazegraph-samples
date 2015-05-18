@@ -1,0 +1,7 @@
+@prefix : <http://bigdata.com> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+:bob foaf:name "Bob" .
+<<:bob foaf:age 23>> dc:creator <http://example.com/crawlers#c1> ;
+                     dc:source <http://example.net/homepage-listing.html> .
