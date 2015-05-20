@@ -15,6 +15,8 @@ import org.openrdf.query.GraphQueryResult;
 import org.openrdf.query.TupleQueryResult;
 import org.openrdf.rio.RDFFormat;
 
+import com.bigdata.rdf.sail.BigdataSail.Options;
+import com.bigdata.rdf.sail.webapp.SD;
 import com.bigdata.rdf.sail.webapp.client.IPreparedTupleQuery;
 import com.bigdata.rdf.sail.webapp.client.RemoteRepository;
 import com.bigdata.rdf.sail.webapp.client.RemoteRepository.AddOp;
@@ -43,8 +45,8 @@ public class SampleBlazegraphRDR {
 		
 			final String namespace = "namespaceRDR";
 			final Properties properties = new Properties();
-			properties.setProperty("com.bigdata.rdf.sail.namespace", namespace);
-			properties.setProperty("com.bigdata.rdf.store.AbstractTripleStore.statementIdentifiers", "true");
+			properties.setProperty(Options.NAMESPACE, namespace);
+			properties.setProperty(Options.STATEMENT_IDENTIFIERS, "true");
 			
 			if(!namespaceExists(namespace, repositoryManager)){
 				log.info(String.format("Create namespace %s...", namespace));
@@ -56,46 +58,39 @@ public class SampleBlazegraphRDR {
 			repositoryManager.getRepositoryForNamespace(namespace).add(new AddOp(is, RDFFormat.forMIMEType("application/x-turtle-RDR")));
 			
 			//execute query
-			try{
-				RemoteRepository r = repositoryManager.getRepositoryForNamespace(namespace);
-			    IPreparedTupleQuery query = r.prepareTupleQuery("SELECT ?age ?src WHERE {?bob foaf:name \"Bob\" . <<?bob foaf:age ?age>> dc:source ?src .}");
-			    TupleQueryResult result = query.evaluate();
-			    while(result.hasNext()){
-			    	BindingSet bs = result.next();
-			    	log.info(bs);
-			    }
-			    result.close();
-			}catch(Exception e){
-				e.printStackTrace();
+			RemoteRepository r = repositoryManager.getRepositoryForNamespace(namespace);
+			IPreparedTupleQuery query = r.prepareTupleQuery("SELECT ?age ?src WHERE {?bob foaf:name \"Bob\" . <<?bob foaf:age ?age>> dc:source ?src .}");
+			TupleQueryResult result = query.evaluate();
+			try {
+				while (result.hasNext()) {
+					BindingSet bs = result.next();
+					log.info(bs);
+				}
+			} finally {
+				result.close();
 			}
-	
 		} finally {
 			client.stop();
 			repositoryManager.close();
-	
 		}
-		}
+	}
 	
-		private static boolean namespaceExists(String namespace, RemoteRepositoryManager repo) throws Exception{
-			GraphQueryResult res = repo.getRepositoryDescriptions();
-			try{
-				while(res.hasNext()){
-					Statement stmt = res.next();
-					if (stmt.getPredicate().toString().equals("http://www.bigdata.com/rdf#/features/KB/Namespace")) {
-						if(namespace.equals(stmt.getObject().stringValue())){
-							log.info(String.format("Namespace %s already exists", namespace));
-							return true;
-						}
+	private static boolean namespaceExists(String namespace, RemoteRepositoryManager repo) throws Exception{
+		GraphQueryResult res = repo.getRepositoryDescriptions();
+		try{
+			while(res.hasNext()){
+				Statement stmt = res.next();
+				if (stmt.getPredicate().toString().equals(SD.KB_NAMESPACE)) {
+					if(namespace.equals(stmt.getObject().stringValue())){
+						log.info(String.format("Namespace %s already exists", namespace));
+						return true;
 					}
 				}
-			} finally {
-				try {
-				res.close();
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
-			}
-			return false;
+		} finally {
+			res.close();
 		}
+		return false;
+	}
 
 }

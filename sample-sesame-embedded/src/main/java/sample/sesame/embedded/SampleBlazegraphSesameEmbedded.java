@@ -33,23 +33,27 @@ public class SampleBlazegraphSesameEmbedded {
 		final BigdataSail sail = new BigdataSail(props);
 		final Repository repo = new BigdataSailRepository(sail);
 
-		repo.initialize();
-
-		loadData(repo, "/data.n3", "");
-		
-		String query = "select * {<http://blazegraph.com/blazegraph> ?p ?o}";
-		TupleQueryResult result = executeSelectQuery(repo, query, QueryLanguage.SPARQL);
-		
-		while(result.hasNext()){
+		try{
+			repo.initialize();
+	
+			loadData(repo, "/data.n3", "");
 			
-			BindingSet bs = result.next();
-			log.info(bs);
+			String query = "select * {<http://blazegraph.com/blazegraph> ?p ?o}";
+			TupleQueryResult result = executeSelectQuery(repo, query, QueryLanguage.SPARQL);
 			
+			try {
+				while(result.hasNext()){
+					
+					BindingSet bs = result.next();
+					log.info(bs);
+					
+				}
+			} finally {
+				result.close();
+			}
+		} finally {
+			repo.shutDown();
 		}
-		
-		result.close();
-		repo.shutDown();
-
 	}
 
 	/*
@@ -70,19 +74,25 @@ public class SampleBlazegraphSesameEmbedded {
 			throws OpenRDFException, IOException {
 
 		RepositoryConnection cxn = repo.getConnection();
-		cxn.begin();
+		
 		try {
-			InputStream is = SampleBlazegraphSesameEmbedded.class
-					.getResourceAsStream(resource);
-			if (is == null) {
-				throw new IOException("Could not locate resource: " + resource);
+			cxn.begin();
+			try {
+				InputStream is = SampleBlazegraphSesameEmbedded.class.getResourceAsStream(resource);
+				if (is == null) {
+					throw new IOException("Could not locate resource: " + resource);
+				}
+				Reader reader = new InputStreamReader(new BufferedInputStream(is));
+				try {
+					cxn.add(reader, baseURL, RDFFormat.N3);
+				} finally {
+					reader.close();
+				}
+				cxn.commit();
+			} catch (OpenRDFException ex) {
+				cxn.rollback();
+				throw ex;
 			}
-			Reader reader = new InputStreamReader(new BufferedInputStream(is));
-			cxn.add(reader, baseURL, RDFFormat.N3);
-			cxn.commit();
-		} catch (OpenRDFException ex) {
-			cxn.rollback();
-			throw ex;
 		} finally {
 			// close the repository connection
 			cxn.close();

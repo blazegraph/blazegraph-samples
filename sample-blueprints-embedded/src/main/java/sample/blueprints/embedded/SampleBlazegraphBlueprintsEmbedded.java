@@ -9,6 +9,7 @@ import org.openrdf.repository.RepositoryException;
 
 import com.bigdata.blueprints.BigdataGraph;
 import com.bigdata.blueprints.BigdataGraphEmbedded;
+import com.bigdata.journal.Options;
 import com.bigdata.rdf.sail.BigdataSailRepository;
 import com.bigdata.rdf.sail.remote.BigdataSailFactory;
 import com.bigdata.rdf.sail.remote.BigdataSailFactory.Option;
@@ -26,7 +27,7 @@ public class SampleBlazegraphBlueprintsEmbedded {
 			RepositoryException {
 
 		final Properties props = new Properties();
-		props.put("com.bigdata.journal.AbstractJournal.bufferMode", "DiskRW");
+		props.put(Options.BUFFER_MODE, "DiskRW");
 		/*
 		 * Lax edges allows us to use non-unique edge identifiers
 		 */
@@ -40,18 +41,20 @@ public class SampleBlazegraphBlueprintsEmbedded {
 
 		BigdataSailRepository repo = getOrCreateRepository(props);
 
-		repo.initialize();
-
-		final BigdataGraph g = new BigdataGraphEmbedded(repo);
-
-		GraphMLReader.inputGraph(g, SampleBlazegraphBlueprintsEmbedded.class
-				.getResourceAsStream("/graph-example-1.xml"));
-
-		for (Vertex v : g.getVertices()) {
-			log.info(v);
-		}
-		for (Edge e : g.getEdges()) {
-			log.info(e);
+		try {
+			final BigdataGraph g = new BigdataGraphEmbedded(repo);
+	
+			GraphMLReader.inputGraph(g, SampleBlazegraphBlueprintsEmbedded.class
+					.getResourceAsStream("/graph-example-1.xml"));
+	
+			for (Vertex v : g.getVertices()) {
+				log.info(v);
+			}
+			for (Edge e : g.getEdges()) {
+				log.info(e);
+			}
+		} finally {
+			repo.shutDown();
 		}
 	}
 	
