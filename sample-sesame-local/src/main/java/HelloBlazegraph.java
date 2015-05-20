@@ -13,15 +13,18 @@ import org.openrdf.query.TupleQueryResult;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 
+import com.bigdata.journal.Options;
 import com.bigdata.rdf.sail.BigdataSail;
 import com.bigdata.rdf.sail.BigdataSailRepository;
+
+
 
 public class HelloBlazegraph {
 	public static void main(String[] args) throws OpenRDFException {
 
 		final Properties props = new Properties();
-		props.put("com.bigdata.journal.AbstractJournal.bufferMode", "DiskRW"); // persistent file system located journal
-		props.put("com.bigdata.journal.AbstractJournal.file",
+		props.put(Options.BUFFER_MODE, "DiskRW"); // persistent file system located journal
+		props.put(Options.FILE,
 				"/tmp/blazegraph/test.jnl"); // journal file location
 
 		final BigdataSail sail = new BigdataSail(props); // instantiate a sail
