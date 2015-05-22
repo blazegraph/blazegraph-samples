@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
+import com.bigdata.rdf.sail.webapp.SD;
 import com.bigdata.rdf.sail.webapp.client.ConnectOptions;
 import com.bigdata.rdf.sail.webapp.client.JettyResponseListener;
 import com.bigdata.rdf.sail.webapp.client.RemoteRepository;
@@ -52,8 +53,6 @@ public class SampleBlazegraphSesameRemote {
 			JettyResponseListener response = getStatus(repo);
 			log.info(response.getResponseBody());
 
-			List<String> namespaces = getNamespacesList(repo);
-
 			// create a new namespace if not exists
 			final String namespace = "newNamespace";
 			final Properties properties = new Properties();
@@ -63,8 +62,7 @@ public class SampleBlazegraphSesameRemote {
 				repo.createRepository(namespace, properties);
 				log.info(String.format("Create namespace %s done", namespace));
 			} else {
-				log.info(String
-						.format("Namespace %s already exists", namespace));
+				log.info(String.format("Namespace %s already exists", namespace));
 			}
 
 			//get properties for namespace
@@ -82,11 +80,14 @@ public class SampleBlazegraphSesameRemote {
 					.evaluate();
 			
 			//result processing
-			while (result.hasNext()) {
-				BindingSet bs = result.next();
-				log.info(bs);
+			try {
+				while (result.hasNext()) {
+					BindingSet bs = result.next();
+					log.info(bs);
+				}
+			} finally {
+				result.close();
 			}
-			result.close();
 
 		} finally {
 			client.stop();
@@ -108,47 +109,21 @@ public class SampleBlazegraphSesameRemote {
 	}
 
 	/*
-	 * Retrieve list of namespaces
-	 */
-	private static List<String> getNamespacesList(RemoteRepositoryManager repo)
-			throws Exception {
-
-		List<String> namespacesList = new LinkedList<String>();
-		GraphQueryResult res = repo.getRepositoryDescriptions();
-		try {
-			while (res.hasNext()) {
-				Statement stmt = res.next();
-				if (stmt.getPredicate()
-						.toString()
-						.equals("http://www.bigdata.com/rdf#/features/KB/Namespace")) {
-					String namespace = stmt.getObject().stringValue();
-					namespacesList.add(namespace);
-				}
-			}
-		} finally {
-			res.close();
-		}
-
-		return namespacesList;
-	}
-
-	/*
 	 * Check namespace already exists.
 	 */
 	private static boolean namespaceExists(RemoteRepositoryManager repo,
 			String namespace) throws Exception {
-
+		
 		GraphQueryResult res = repo.getRepositoryDescriptions();
 		try {
 			while (res.hasNext()) {
 				Statement stmt = res.next();
 				if (stmt.getPredicate()
 						.toString()
-						.equals("http://www.bigdata.com/rdf#/features/KB/Namespace")) {
+						.equals(SD.KB_NAMESPACE)) {
 					if (namespace.equals(stmt.getObject().stringValue())) {
 						return true;
 					}
-
 				}
 			}
 		} finally {
@@ -180,8 +155,12 @@ public class SampleBlazegraphSesameRemote {
 		if (is == null) {
 			throw new IOException("Could not locate resource: " + resource);
 		}
-		repo.getRepositoryForNamespace(namespace).add(
-				new RemoteRepository.AddOp(is, RDFFormat.N3));
+		try {
+			repo.getRepositoryForNamespace(namespace).add(
+					new RemoteRepository.AddOp(is, RDFFormat.N3));
+		} finally {
+			is.close();
+		}
 	}
 
 }

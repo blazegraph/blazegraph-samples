@@ -24,8 +24,7 @@ public class HelloBlazegraph {
 
 		final Properties props = new Properties();
 		props.put(Options.BUFFER_MODE, "DiskRW"); // persistent file system located journal
-		props.put(Options.FILE,
-				"/tmp/blazegraph/test.jnl"); // journal file location
+		props.put(Options.FILE, "/tmp/blazegraph/test.jnl"); // journal file location
 
 		final BigdataSail sail = new BigdataSail(props); // instantiate a sail
 		final Repository repo = new BigdataSailRepository(sail); // create a Sesame repository
@@ -63,18 +62,20 @@ public class HelloBlazegraph {
 			}
 
 			// evaluate sparql query
-			// "select ?p ?o where { <http://example.org/#spiderman> ?p ?o . }"
 			try {
 
 				final TupleQuery tupleQuery = cxn
 						.prepareTupleQuery(QueryLanguage.SPARQL,
 								"select ?p ?o where { <http://blazegraph.com/Blazegraph> ?p ?o . }");
 				TupleQueryResult result = tupleQuery.evaluate();
-				while (result.hasNext()) {
-					BindingSet bindingSet = result.next();
-					System.err.println(bindingSet);
+				try {
+					while (result.hasNext()) {
+						BindingSet bindingSet = result.next();
+						System.err.println(bindingSet);
+					}
+				} finally {
+					result.close();
 				}
-				result.close();
 
 			} finally {
 				// close the repository connection

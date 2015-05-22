@@ -15,16 +15,16 @@ public class SampleBlazegraphBlueprintsRemote {
 	public static void main(String[] args) throws Exception {
 		
 		final BigdataGraph graph = new BigdataGraphClient("http://localhost:9999/bigdata");
-		
+		try {
 			graph.loadGraphML(SampleBlazegraphBlueprintsRemote.class.getResource("/graph-example-1.xml").getFile());
-
-		for (Vertex v : graph.getVertices()) {
-			log.info(v);
+			for (Vertex v : graph.getVertices()) {
+				log.info(v);
+			}
+			for (Edge e : graph.getEdges()) {
+				log.info(e);
+			}
+		} finally {
+			graph.shutdown();
 		}
-		for (Edge e : graph.getEdges()) {
-			log.info(e);
-		}
-		
-		graph.shutdown();
 	}
 }
