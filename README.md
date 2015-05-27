@@ -1,7 +1,7 @@
 # blazegraph-samples
 Samples for using Blazegraph™
 
-Simple projects demonstrating using Blazegraph for loading/querying data in different modes:
+Simple applications demonstrating using Blazegraph for loading/querying data in different modes:
 
 1. sample-sesame-first - Sesame API in emmbedded mode
   http://wiki.blazegraph.com/wiki/index.php/First_Application_Tutorial
