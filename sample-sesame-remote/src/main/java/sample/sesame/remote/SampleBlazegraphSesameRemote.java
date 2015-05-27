@@ -22,10 +22,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-/*
- * Wiki page link:
- * http://wiki.blazegraph.com/wiki/index.php/Sesame_API_remote_mode
- * 
+/**
+ * See <a href="http://wiki.blazegraph.com/wiki/index.php/Sesame_API_remote_mode">Sesame API remote mode</a>
  */
 
 package sample.sesame.remote;
@@ -98,7 +96,10 @@ public class SampleBlazegraphSesameRemote {
 			response = getNamespaceProperties(repo, namespace);
 			log.info(response.getResponseBody());
 
-			//load data
+			/*
+			 * Load data from file located in the resource folder
+			 * src/main/resources/data.n3
+			 */
 			String resource = "/data.n3";
 			loadDataFromResource(repo, namespace, resource);
 

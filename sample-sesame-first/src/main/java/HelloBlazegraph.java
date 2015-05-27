@@ -22,9 +22,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-/*
- * Wiki page link:
- * http://wiki.blazegraph.com/wiki/index.php/First_Application_Tutorial
+/**
+ * See <a href="http://wiki.blazegraph.com/wiki/index.php/First_Application_Tutorial">First Application Tutorial</a>
  */
 
 import java.util.Properties;
@@ -51,6 +50,11 @@ public class HelloBlazegraph {
 	public static void main(String[] args) throws OpenRDFException {
 
 		final Properties props = new Properties();
+		
+		/*
+		 * For more configuration parameters see
+		 * http://www.blazegraph.com/docs/api/index.html?com/bigdata/journal/BufferMode.html
+		 */
 		props.put(Options.BUFFER_MODE, BufferMode.DiskRW); // persistent file system located journal
 		props.put(Options.FILE, "/tmp/blazegraph/test.jnl"); // journal file location
 

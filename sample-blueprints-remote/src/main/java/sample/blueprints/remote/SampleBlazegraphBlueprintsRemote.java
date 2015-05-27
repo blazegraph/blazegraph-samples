@@ -22,6 +22,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
+/**
+ * See <a href="http://wiki.blazegraph.com/wiki/index.php/Blueprints_API_remote_mode">Blueprints API remote mode</a>
+ */
 /*
  * Wiki page link:
  * http://wiki.blazegraph.com/wiki/index.php/Blueprints_API_remote_mode
