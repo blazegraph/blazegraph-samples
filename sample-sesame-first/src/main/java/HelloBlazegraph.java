@@ -51,6 +51,11 @@ public class HelloBlazegraph {
 	public static void main(String[] args) throws OpenRDFException {
 
 		final Properties props = new Properties();
+		
+		/*
+		 * For more configuration parameters see
+		 * http://www.blazegraph.com/docs/api/index.html?com/bigdata/journal/BufferMode.html
+		 */
 		props.put(Options.BUFFER_MODE, BufferMode.DiskRW); // persistent file system located journal
 		props.put(Options.FILE, "/tmp/blazegraph/test.jnl"); // journal file location
 

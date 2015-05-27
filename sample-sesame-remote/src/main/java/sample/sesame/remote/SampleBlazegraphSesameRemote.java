@@ -98,7 +98,10 @@ public class SampleBlazegraphSesameRemote {
 			response = getNamespaceProperties(repo, namespace);
 			log.info(response.getResponseBody());
 
-			//load data
+			/*
+			 * Load data from file located in the resource folder
+			 * src/main/resources/data.n3
+			 */
 			String resource = "/data.n3";
 			loadDataFromResource(repo, namespace, resource);
 

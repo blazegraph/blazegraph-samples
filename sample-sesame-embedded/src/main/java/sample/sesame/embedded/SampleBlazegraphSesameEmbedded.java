@@ -65,8 +65,13 @@ public class SampleBlazegraphSesameEmbedded {
 
 		try{
 			repo.initialize();
+			
+			/*
+			 * Load data from resources 
+			 * src/main/resources/data.n3
+			 */
 	
-			loadData(repo, "/data.n3", "");
+			loadDataFromResources(repo, "/data.n3", "");
 			
 			String query = "select * {<http://blazegraph.com/blazegraph> ?p ?o}";
 			TupleQueryResult result = executeSelectQuery(repo, query, QueryLanguage.SPARQL);
@@ -100,7 +105,7 @@ public class SampleBlazegraphSesameEmbedded {
 	/*
 	 * Load data from resources into a repository.
 	 */
-	public static void loadData(Repository repo, String resource, String baseURL)
+	public static void loadDataFromResources(Repository repo, String resource, String baseURL)
 			throws OpenRDFException, IOException {
 
 		RepositoryConnection cxn = repo.getConnection();

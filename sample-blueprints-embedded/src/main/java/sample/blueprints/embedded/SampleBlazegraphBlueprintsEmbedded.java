@@ -57,7 +57,13 @@ public class SampleBlazegraphBlueprintsEmbedded {
 			RepositoryException {
 
 		final Properties props = new Properties();
+		
+		/*
+		 * For more configuration parameters see
+		 * http://www.blazegraph.com/docs/api/index.html?com/bigdata/journal/BufferMode.html
+		 */
 		props.put(Options.BUFFER_MODE, BufferMode.DiskRW);
+		
 		/*
 		 * Lax edges allows us to use non-unique edge identifiers
 		 */
