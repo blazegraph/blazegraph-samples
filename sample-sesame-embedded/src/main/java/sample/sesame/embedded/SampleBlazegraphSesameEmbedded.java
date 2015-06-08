@@ -1,4 +1,33 @@
+/**
+
+Copyright (C) SYSTAP, LLC 2006-2015.  All rights reserved.
+
+Contact:
+     SYSTAP, LLC
+     2501 Calvert ST NW #106
+     Washington, DC 20008
+     licenses@systap.com
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+/**
+ * See <a href="http://wiki.blazegraph.com/wiki/index.php/Sesame_API_embedded_mode">Sesame API embedded mode</a>
+ */
+
 package sample.sesame.embedded;
+
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,8 +64,13 @@ public class SampleBlazegraphSesameEmbedded {
 
 		try{
 			repo.initialize();
+			
+			/*
+			 * Load data from resources 
+			 * src/main/resources/data.n3
+			 */
 	
-			loadData(repo, "/data.n3", "");
+			loadDataFromResources(repo, "/data.n3", "");
 			
 			String query = "select * {<http://blazegraph.com/blazegraph> ?p ?o}";
 			TupleQueryResult result = executeSelectQuery(repo, query, QueryLanguage.SPARQL);
@@ -70,7 +104,7 @@ public class SampleBlazegraphSesameEmbedded {
 	/*
 	 * Load data from resources into a repository.
 	 */
-	public static void loadData(Repository repo, String resource, String baseURL)
+	public static void loadDataFromResources(Repository repo, String resource, String baseURL)
 			throws OpenRDFException, IOException {
 
 		RepositoryConnection cxn = repo.getConnection();

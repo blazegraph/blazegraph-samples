@@ -1,9 +1,35 @@
+/**
+
+Copyright (C) SYSTAP, LLC 2006-2015.  All rights reserved.
+
+Contact:
+     SYSTAP, LLC
+     2501 Calvert ST NW #106
+     Washington, DC 20008
+     licenses@systap.com
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+
+/**
+ * See <a href="http://wiki.blazegraph.com/wiki/index.php/Sesame_API_remote_mode">Sesame API remote mode</a>
+ */
+
 package sample.sesame.remote;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -70,7 +96,10 @@ public class SampleBlazegraphSesameRemote {
 			response = getNamespaceProperties(repo, namespace);
 			log.info(response.getResponseBody());
 
-			//load data
+			/*
+			 * Load data from file located in the resource folder
+			 * src/main/resources/data.n3
+			 */
 			String resource = "/data.n3";
 			loadDataFromResource(repo, namespace, resource);
 
