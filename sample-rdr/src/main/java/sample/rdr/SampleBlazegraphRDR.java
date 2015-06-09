@@ -30,13 +30,8 @@ package sample.rdr;
 
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 import org.apache.log4j.Logger;
-import org.eclipse.jetty.client.HttpClient;
-import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.openrdf.model.Statement;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.GraphQueryResult;
@@ -57,17 +52,7 @@ public class SampleBlazegraphRDR {
 	
 	public static void main(String[] args) throws Exception  {
 	
-		final HttpClient client = new HttpClient((new SslContextFactory(true/*trust all*/)));
-		client.start();
-		final ExecutorService executorService = Executors.newSingleThreadExecutor(new ThreadFactory() {
-		
-			public Thread newThread(Runnable r) {
-				Thread th = new Thread(r);
-				th.setDaemon(true);
-				return th;
-			}
-		});
-		final RemoteRepositoryManager repositoryManager = new RemoteRepositoryManager(sparqlEndPoint, true /*useLBS*/, client, executorService);
+		final RemoteRepositoryManager repositoryManager = new RemoteRepositoryManager(sparqlEndPoint, true /*useLBS*/);
 	
 		try{	
 		
@@ -98,7 +83,6 @@ public class SampleBlazegraphRDR {
 				result.close();
 			}
 		} finally {
-			client.stop();
 			repositoryManager.close();
 		}
 	}
@@ -108,7 +92,7 @@ public class SampleBlazegraphRDR {
 		try{
 			while(res.hasNext()){
 				Statement stmt = res.next();
-				if (stmt.getPredicate().toString().equals(SD.KB_NAMESPACE)) {
+				if (stmt.getPredicate().toString().equals(SD.KB_NAMESPACE.stringValue())) {
 					if(namespace.equals(stmt.getObject().stringValue())){
 						log.info(String.format("Namespace %s already exists", namespace));
 						return true;

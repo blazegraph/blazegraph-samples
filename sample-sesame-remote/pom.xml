@@ -16,13 +16,8 @@
  		<dependency>
  			<groupId>com.bigdata</groupId>
 			<artifactId>bigdata</artifactId>
-			<version>1.5.1</version>
+			<version>1.5.2</version>
  		</dependency>
- 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-client</artifactId>
-			<version>9.2.7.v20150116</version>
-		</dependency>
  	</dependencies>
  	
 </project>
