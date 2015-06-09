@@ -31,9 +31,6 @@ package sample.sesame.remote;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 import com.bigdata.rdf.sail.webapp.SD;
 import com.bigdata.rdf.sail.webapp.client.ConnectOptions;
@@ -42,8 +39,6 @@ import com.bigdata.rdf.sail.webapp.client.RemoteRepository;
 import com.bigdata.rdf.sail.webapp.client.RemoteRepositoryManager;
 
 import org.apache.log4j.Logger;
-import org.eclipse.jetty.client.HttpClient;
-import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.openrdf.model.Statement;
 import org.openrdf.query.BindingSet;
 import org.openrdf.query.GraphQueryResult;
@@ -58,21 +53,8 @@ public class SampleBlazegraphSesameRemote {
 
 	public static void main(String[] args) throws Exception {
 
-		final HttpClient client = new HttpClient(
-				(new SslContextFactory(true/* trust all */)));
-		client.start();
-		final ExecutorService executorService = Executors
-				.newSingleThreadExecutor(new ThreadFactory() {
-
-					public Thread newThread(Runnable r) {
-						Thread th = new Thread(r);
-						th.setDaemon(true);
-						return th;
-					}
-				});
-
 		final RemoteRepositoryManager repo = new RemoteRepositoryManager(
-				sparqlEndPoint, true /* useLBS */, client, executorService);
+				sparqlEndPoint, true /* useLBS */);
 
 		try {
 
@@ -119,7 +101,6 @@ public class SampleBlazegraphSesameRemote {
 			}
 
 		} finally {
-			client.stop();
 			repo.close();
 		}
 
@@ -149,7 +130,7 @@ public class SampleBlazegraphSesameRemote {
 				Statement stmt = res.next();
 				if (stmt.getPredicate()
 						.toString()
-						.equals(SD.KB_NAMESPACE)) {
+						.equals(SD.KB_NAMESPACE.stringValue())) {
 					if (namespace.equals(stmt.getObject().stringValue())) {
 						return true;
 					}
