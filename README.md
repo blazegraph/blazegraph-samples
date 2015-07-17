@@ -2,7 +2,7 @@
 
 Please also visit us at [blazegraph.com](http://www.blazegraph.com).
 
-![image](http://www.blazegraph.com/static/images/blazegraph.png)
+![image](http://www.blazegraph.com/static/images/blazegraph_by_systap.png)
 
 # blazegraph-samples
 Samples for using Blazegraph™
