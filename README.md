@@ -5,7 +5,7 @@ Blazegraph™ is our ultra high-performance graph database supporting Blueprints
 
 Please also visit us at our: [website](http://www.blazegraph.com), [wiki](https://wiki.blazegraph.com), and [blog](https://wiki.blazegraph.com/).
 
-Find an issue?   Having a problem?  See [JIRA](https://jira.blazegraph.com) or buy [Support](https://www.blazegraph.com/buy).
+Find an issue?   Having a problem?  See [JIRA](https://jira.blazegraph.com) or purchase [Support](https://www.blazegraph.com/buy).
 
 ![image](http://www.blazegraph.com/static/images/blazegraph_by_systap.png)
 
