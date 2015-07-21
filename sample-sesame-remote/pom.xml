@@ -1,9 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.blazegraph</groupId>
+    <artifactId>samples</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
   <groupId>com.blazegraph</groupId>
   <artifactId>sample-sesame-remote</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Blazegraph Application Sample</name>
+  <name>Blazegraph Sesame Remote Sample</name>
   
   <repositories>
 	<repository>
@@ -16,8 +22,13 @@
  		<dependency>
  			<groupId>com.bigdata</groupId>
 			<artifactId>bigdata</artifactId>
-			<version>1.5.2</version>
+			<version>${blazegraph.version}</version>
  		</dependency>
+ 		<dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-client</artifactId>
+                        <version>9.2.7.v20150116</version>
+                </dependency>
  	</dependencies>
  	
 </project>
