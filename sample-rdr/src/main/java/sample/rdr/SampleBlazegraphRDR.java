@@ -48,11 +48,11 @@ import com.bigdata.rdf.sail.webapp.client.RemoteRepositoryManager;
 public class SampleBlazegraphRDR {
 	
 	protected static final Logger log = Logger.getLogger(SampleBlazegraphRDR.class);
-	private static final String sparqlEndPoint = "http://localhost:9999/bigdata";
+	private static final String serviceURL = "http://localhost:9999/bigdata";
 	
 	public static void main(String[] args) throws Exception  {
 	
-		final RemoteRepositoryManager repositoryManager = new RemoteRepositoryManager(sparqlEndPoint, true /*useLBS*/);
+		final RemoteRepositoryManager repositoryManager = new RemoteRepositoryManager(serviceURL, true /*useLBS*/);
 	
 		try{	
 		

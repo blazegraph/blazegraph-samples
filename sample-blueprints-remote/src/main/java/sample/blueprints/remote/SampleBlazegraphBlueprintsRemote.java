@@ -44,9 +44,11 @@ public class SampleBlazegraphBlueprintsRemote {
 	
 	protected static final Logger log = Logger.getLogger(SampleBlazegraphBlueprintsRemote.class);
 
+        protected static String serviceURL = "http://localhost:9999/bigdata";
+
 	public static void main(String[] args) throws Exception {
 		
-		final BigdataGraph graph = new BigdataGraphClient("http://localhost:9999/bigdata");
+		final BigdataGraph graph = new BigdataGraphClient(serviceURL);
 		try {
 			graph.loadGraphML(SampleBlazegraphBlueprintsRemote.class.getResource("/graph-example-1.xml").getFile());
 			for (Vertex v : graph.getVertices()) {

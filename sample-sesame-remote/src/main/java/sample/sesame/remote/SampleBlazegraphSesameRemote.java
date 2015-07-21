@@ -49,12 +49,12 @@ public class SampleBlazegraphSesameRemote {
 
 	protected static final Logger log = Logger
 			.getLogger(SampleBlazegraphSesameRemote.class);
-	private static final String sparqlEndPoint = "http://localhost:9999/bigdata";
+	private static final String serviceURL = "http://localhost:9999/bigdata";
 
 	public static void main(String[] args) throws Exception {
 
 		final RemoteRepositoryManager repo = new RemoteRepositoryManager(
-				sparqlEndPoint, true /* useLBS */);
+				serviceURL, true /* useLBS */);
 
 		try {
 
@@ -112,7 +112,7 @@ public class SampleBlazegraphSesameRemote {
 	private static JettyResponseListener getStatus(RemoteRepositoryManager repo)
 			throws Exception {
 
-		ConnectOptions opts = new ConnectOptions(sparqlEndPoint + "/status");
+		ConnectOptions opts = new ConnectOptions(serviceURL + "/status");
 		opts.method = "GET";
 		return repo.doConnect(opts);
 
@@ -148,7 +148,7 @@ public class SampleBlazegraphSesameRemote {
 	private static JettyResponseListener getNamespaceProperties(
 			RemoteRepositoryManager repo, String namespace) throws Exception {
 
-		ConnectOptions opts = new ConnectOptions(sparqlEndPoint + "/namespace/"
+		ConnectOptions opts = new ConnectOptions(serviceURL + "/namespace/"
 				+ namespace + "/properties");
 		opts.method = "GET";
 		return repo.doConnect(opts);
