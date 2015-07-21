@@ -15,7 +15,7 @@ Samples for using Blazegraph™
 To build everything run:
 
 ```
-    	mvn package
+mvn package
 ```
 
 Simple applications demonstrating using Blazegraph for loading/querying data in different modes:
@@ -23,8 +23,8 @@ Simple applications demonstrating using Blazegraph for loading/querying data in 
 To build a sample, cd in the directory and run:
 
 ```
-	cd sample-sesame-first
-   	mvn package
+cd sample-sesame-first
+mvn package
 ```
 
 1. sample-sesame-first - Sesame API in emmbedded mode
