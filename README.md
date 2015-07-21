@@ -12,7 +12,20 @@ Find an issue?   Having a problem?  See [JIRA](https://jira.blazegraph.com) or p
 # blazegraph-samples
 Samples for using Blazegraph™
 
+To build everything run:
+
+```
+    	mvn package
+```
+
 Simple applications demonstrating using Blazegraph for loading/querying data in different modes:
+
+To build a sample, cd in the directory and run:
+
+```
+	cd sample-sesame-first
+   	mvn package
+```
 
 1. sample-sesame-first - Sesame API in emmbedded mode
   https://wiki.blazegraph.com/wiki/index.php/First_Application_Tutorial
