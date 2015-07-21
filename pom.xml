@@ -1,15 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.blazegraph</groupId>
-    <artifactId>samples</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
-  </parent>
   <groupId>com.blazegraph</groupId>
-  <artifactId>sample-sesame-embedded</artifactId>
+  <artifactId>samples</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Blazegraph Sesame Embedded Sample</name>
+  <packaging>pom</packaging>
+  <name>Blazegraph Application Samples</name>
+
+  <properties>
+	<blazegraph.version>1.5.2_RC_1</blazegraph.version>
+  </properties>
   
   <repositories>
 	<repository>
@@ -25,5 +24,14 @@
 			<version>${blazegraph.version}</version>
  		</dependency>
  	</dependencies>
+
+	<modules>
+			<module>sample-blueprints-embedded</module>
+			<module>sample-blueprints-remote</module>
+			<module>sample-rdr</module>
+			<module>sample-sesame-embedded</module>
+			<module>sample-sesame-first</module>
+			<module>sample-sesame-remote</module>
+	</modules>
  	
 </project>
