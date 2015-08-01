@@ -7,7 +7,7 @@
   <name>Blazegraph Application Samples</name>
 
   <properties>
-	<blazegraph.version>1.5.2_RC_1</blazegraph.version>
+	<blazegraph.version>1.5.2</blazegraph.version>
   </properties>
   
   <repositories>
