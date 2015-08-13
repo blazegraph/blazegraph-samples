@@ -7,15 +7,21 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <groupId>com.blazegraph.sample</groupId>
-  <artifactId>sample-blueprints-embedded</artifactId>
-  <name>Blazegraph Blueprints Embedded Sample </name>
+  <artifactId>sample-rdf-rules</artifactId>
+  <name>Blazegraph RDF Rules Sample</name>
   
-  <dependencies>
- 	<dependency>
- 		<groupId>com.bigdata</groupId>
-		<artifactId>bigdata</artifactId>
-		<version>${blazegraph.version}</version>
-	</dependency>
-  </dependencies>
+ 	<dependencies>
+ 		<dependency>
+ 			<groupId>com.blazegraph</groupId>
+			<artifactId>bigdata-core</artifactId>
+			<version>1.5.3-master-SNAPSHOT</version>
+ 		</dependency>
+ 		<dependency>
+ 			<groupId>com.blazegraph</groupId>
+			<artifactId>bigdata-sails-test</artifactId>
+			<version>1.5.3-master-SNAPSHOT</version>
+			<type>test-jar</type>
+ 		</dependency>
+ 	</dependencies>
  	
 </project>

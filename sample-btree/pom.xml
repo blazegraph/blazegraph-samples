@@ -7,15 +7,15 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <groupId>com.blazegraph.sample</groupId>
-  <artifactId>sample-blueprints-embedded</artifactId>
-  <name>Blazegraph Blueprints Embedded Sample </name>
+  <artifactId>sample-btree</artifactId>
+  <name>Blazegraph BTree Sample</name>
   
   <dependencies>
  	<dependency>
  		<groupId>com.bigdata</groupId>
 		<artifactId>bigdata</artifactId>
 		<version>${blazegraph.version}</version>
-	</dependency>
-  </dependencies>
+ 	</dependency>
+ </dependencies>
  	
 </project>
