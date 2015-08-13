@@ -6,9 +6,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>com.blazegraph</groupId>
+  <groupId>com.blazegraph.sample</groupId>
   <artifactId>sample-blueprints-remote</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>Blazegraph Blueprints Remote Sample</name>
   
   <repositories>
