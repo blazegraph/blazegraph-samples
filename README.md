@@ -7,7 +7,7 @@ Please also visit us at our: [website](http://www.blazegraph.com), [wiki](https:
 
 Find an issue?   Having a problem?  See [JIRA](https://jira.blazegraph.com) or purchase [Support](https://www.blazegraph.com/buy).
 
-![image](http://www.blazegraph.com/static/images/blazegraph_by_systap.png)
+![image](https://blog.blazegraph.com/wp-admin/upload.php?item=908)
 
 # blazegraph-samples
 Samples for using Blazegraph™
