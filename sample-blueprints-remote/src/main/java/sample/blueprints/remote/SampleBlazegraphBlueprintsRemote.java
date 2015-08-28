@@ -44,7 +44,7 @@ public class SampleBlazegraphBlueprintsRemote {
 	
 	protected static final Logger log = Logger.getLogger(SampleBlazegraphBlueprintsRemote.class);
 
-        protected static String serviceURL = "http://localhost:9999/bigdata";
+        protected static String serviceURL = "http://localhost:9999/bigdata/sparql";
 
 	public static void main(String[] args) throws Exception {
 		
