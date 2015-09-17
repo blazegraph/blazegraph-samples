@@ -122,7 +122,7 @@ public class ReadWriteIndexTxExample {
 
             int i = 0;
             int nok = 0;
-            for (Future<Void> future : futures) {
+            for (final Future<Void> future : futures) {
 
                 // check for errors.
                 try {

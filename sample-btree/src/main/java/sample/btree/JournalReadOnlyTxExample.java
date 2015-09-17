@@ -260,7 +260,7 @@ public class JournalReadOnlyTxExample {
 	 * Write a set of tuples having keys in [0:1000) and values equal to the
 	 * keys.
 	 */
-	private static void writeSet1(BTree btree) {
+	private static void writeSet1(final BTree btree) {
 
 		log.info("");
 		
@@ -278,7 +278,7 @@ public class JournalReadOnlyTxExample {
 	 * 
 	 * @param btree
 	 */
-	private static void writeSet2(BTree btree) {
+	private static void writeSet2(final BTree btree) {
 
 		log.info("");
 
@@ -293,7 +293,7 @@ public class JournalReadOnlyTxExample {
 	/**
 	 * Verify the set of tuples written by {@link #writeSet1(BTree)}.
 	 */
-	private static void verifyWriteSet1(BTree btree) {
+	private static void verifyWriteSet1(final BTree btree) {
 
 		log.info("");
 
@@ -314,7 +314,7 @@ public class JournalReadOnlyTxExample {
 	/**
 	 * Verify that the write set is not found (no keys in [0:1000)).
 	 */
-	private static void verifyWriteSetNotFound(BTree btree) {
+	private static void verifyWriteSetNotFound(final BTree btree) {
 
 		log.info("");
 
@@ -334,7 +334,7 @@ public class JournalReadOnlyTxExample {
 	 * Delete the tuples written by {@link #writeSet(BTree)} or
 	 * {@link #writeSet2(BTree).
 	 */
-	private static void removeWriteSet(BTree btree) {
+	private static void removeWriteSet(final BTree btree) {
 
 		log.info("");
 

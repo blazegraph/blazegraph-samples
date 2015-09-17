@@ -106,7 +106,7 @@ public class ReadWriteIndexExample {
             final List<Future<Void>> futures = store.getExecutorService()
                     .invokeAll(tasks);
 
-            for(Future<Void> future : futures) {
+            for(final Future<Void> future : futures) {
                 
                 // check for errors.
                 future.get();

@@ -58,7 +58,7 @@ public class SampleAxioms extends OwlAxioms {
 	 * save the inference engine some work by not having to keep track of
 	 * proving this information over and over again.
 	 */
-    protected void addAxioms(Collection<BigdataStatement> axioms) {
+    protected void addAxioms(final Collection<BigdataStatement> axioms) {
 
         super.addAxioms(axioms);
 

@@ -54,7 +54,7 @@ public class SampleBlazegraphSesameRemote {
 	public static void main(String[] args) throws Exception {
 
 		final RemoteRepositoryManager repo = new RemoteRepositoryManager(
-				serviceURL, true /* useLBS */);
+				serviceURL, false /* useLBS */);
 
 		try {
 
@@ -82,18 +82,18 @@ public class SampleBlazegraphSesameRemote {
 			 * Load data from file located in the resource folder
 			 * src/main/resources/data.n3
 			 */
-			String resource = "/data.n3";
+			final String resource = "/data.n3";
 			loadDataFromResource(repo, namespace, resource);
 
 			// execute query
-			TupleQueryResult result = repo.getRepositoryForNamespace(namespace)
+			final TupleQueryResult result = repo.getRepositoryForNamespace(namespace)
 					.prepareTupleQuery("SELECT * {?s ?p ?o} LIMIT 100")
 					.evaluate();
 			
 			//result processing
 			try {
 				while (result.hasNext()) {
-					BindingSet bs = result.next();
+					final BindingSet bs = result.next();
 					log.info(bs);
 				}
 			} finally {
@@ -109,10 +109,10 @@ public class SampleBlazegraphSesameRemote {
 	/*
 	 * Status request.
 	 */
-	private static JettyResponseListener getStatus(RemoteRepositoryManager repo)
+	private static JettyResponseListener getStatus(final RemoteRepositoryManager repo)
 			throws Exception {
 
-		ConnectOptions opts = new ConnectOptions(serviceURL + "/status");
+		final ConnectOptions opts = new ConnectOptions(serviceURL + "/status");
 		opts.method = "GET";
 		return repo.doConnect(opts);
 
@@ -121,13 +121,13 @@ public class SampleBlazegraphSesameRemote {
 	/*
 	 * Check namespace already exists.
 	 */
-	private static boolean namespaceExists(RemoteRepositoryManager repo,
-			String namespace) throws Exception {
+	private static boolean namespaceExists(final RemoteRepositoryManager repo,
+			final String namespace) throws Exception {
 		
-		GraphQueryResult res = repo.getRepositoryDescriptions();
+		final GraphQueryResult res = repo.getRepositoryDescriptions();
 		try {
 			while (res.hasNext()) {
-				Statement stmt = res.next();
+				final Statement stmt = res.next();
 				if (stmt.getPredicate()
 						.toString()
 						.equals(SD.KB_NAMESPACE.stringValue())) {
@@ -146,9 +146,9 @@ public class SampleBlazegraphSesameRemote {
 	 * Get namespace properties.
 	 */
 	private static JettyResponseListener getNamespaceProperties(
-			RemoteRepositoryManager repo, String namespace) throws Exception {
+			final RemoteRepositoryManager repo, final String namespace) throws Exception {
 
-		ConnectOptions opts = new ConnectOptions(serviceURL + "/namespace/"
+		final ConnectOptions opts = new ConnectOptions(serviceURL + "/namespace/"
 				+ namespace + "/properties");
 		opts.method = "GET";
 		return repo.doConnect(opts);
@@ -158,9 +158,9 @@ public class SampleBlazegraphSesameRemote {
 	/*
 	 * Load data into a namespace.
 	 */
-	private static void loadDataFromResource(RemoteRepositoryManager repo,
-			String namespace, String resource) throws Exception {
-		InputStream is = SampleBlazegraphSesameRemote.class
+	private static void loadDataFromResource(final RemoteRepositoryManager repo,
+			final String namespace, final String resource) throws Exception {
+		final InputStream is = SampleBlazegraphSesameRemote.class
 				.getResourceAsStream(resource);
 		if (is == null) {
 			throw new IOException("Could not locate resource: " + resource);

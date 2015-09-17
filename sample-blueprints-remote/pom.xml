@@ -9,18 +9,16 @@
   <groupId>com.blazegraph.sample</groupId>
   <artifactId>sample-blueprints-remote</artifactId>
   <name>Blazegraph Blueprints Remote Sample</name>
-  
-  <repositories>
-	<repository>
-	   <id>bigdata.releases</id>
-	   <url>http://www.systap.com/maven/releases</url>
- 	</repository>
- 	</repositories>
- 	
+ 
  	<dependencies>
  		<dependency>
- 			<groupId>com.bigdata</groupId>
-			<artifactId>bigdata</artifactId>
+ 			<groupId>com.blazegraph</groupId>
+			<artifactId>bigdata-core</artifactId>
+			<version>${blazegraph.version}</version>
+ 		</dependency>
+ 		<dependency>
+ 			<groupId>com.blazegraph</groupId>
+			<artifactId>bigdata-blueprints</artifactId>
 			<version>${blazegraph.version}</version>
  		</dependency>
  		<dependency>
@@ -28,6 +26,11 @@
 			<artifactId>jetty-client</artifactId>
 			<version>9.2.7.v20150116</version>
 		</dependency>
+		<dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>4.11</version>
+     </dependency>
  	</dependencies>
  	
 </project>
