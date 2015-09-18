@@ -12,15 +12,9 @@
   
   <dependencies>
  	<dependency>
- 		<groupId>com.blazegraph</groupId>
-		<artifactId>bigdata-core</artifactId>
-		<version>${blazegraph.version}</version>
-	</dependency>
-	<dependency>
- 		<groupId>com.blazegraph</groupId>
-		<artifactId>bigdata-blueprints</artifactId>
+ 		<groupId>com.bigdata</groupId>
+		<artifactId>bigdata</artifactId>
 		<version>${blazegraph.version}</version>
 	</dependency>
   </dependencies>
- 	
 </project>

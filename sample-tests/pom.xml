@@ -94,10 +94,10 @@
   </build>
   <dependencies>
  	<dependency>
- 		<groupId>com.blazegraph</groupId>
-		<artifactId>bigdata-core</artifactId>
+ 		<groupId>com.bigdata</groupId>
+		<artifactId>bigdata</artifactId>
 		<version>${blazegraph.version}</version>
- 	</dependency>
+	</dependency>
   	<dependency>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-client</artifactId>

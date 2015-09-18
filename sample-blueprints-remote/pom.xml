@@ -12,25 +12,15 @@
  
  	<dependencies>
  		<dependency>
- 			<groupId>com.blazegraph</groupId>
-			<artifactId>bigdata-core</artifactId>
+	 		<groupId>com.bigdata</groupId>
+			<artifactId>bigdata</artifactId>
 			<version>${blazegraph.version}</version>
- 		</dependency>
- 		<dependency>
- 			<groupId>com.blazegraph</groupId>
-			<artifactId>bigdata-blueprints</artifactId>
-			<version>${blazegraph.version}</version>
- 		</dependency>
+		</dependency>
  		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-client</artifactId>
 			<version>9.2.7.v20150116</version>
 		</dependency>
-		<dependency>
-	      <groupId>junit</groupId>
-	      <artifactId>junit</artifactId>
-	      <version>4.11</version>
-     </dependency>
- 	</dependencies>
+	</dependencies>
  	
 </project>

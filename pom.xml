@@ -7,7 +7,7 @@
   <name>Blazegraph Application Samples</name>
 
   <properties>
-	<blazegraph.version>1.5.3-master-SNAPSHOT</blazegraph.version>
+	<blazegraph.version>1.5.3-SNAPSHOT</blazegraph.version>
   </properties>
   
 	<repositories>
