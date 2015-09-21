@@ -9,100 +9,12 @@
   <groupId>com.blazegraph.sample</groupId>
   <artifactId>sample-tests</artifactId>
   <name>Blazegraph Samples Tests</name>
-  <build>
-     <plugins>
-       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.6</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.18.1</version>
-        <configuration>
-          <forkCount>1</forkCount>
-          <reuseForks>true</reuseForks>
-	 	  <printSummary>false</printSummary>
-          <disableXmlReport>false</disableXmlReport>
-          <argLine>-server -ea -Xms512m -Xmx8g -XX:+UseMembar -XX:MaxPermSize=500m -Djavadoc=true -Djava.net.preferIPv4Stack=${java.net.preferIPv4Stack} -Dlog4j.configuration=file:src/test/resources/log4j.properties</argLine>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.10</version>
-        <executions>
-          <execution>
-            <id>copy</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.blazegraph</groupId>
-                  <artifactId>bigdata-war-html</artifactId>
-                  <version>${blazegraph.version}</version>
-                  <type>war</type>
-                  <overWrite>true</overWrite>
-                  <outputDirectory>target</outputDirectory>
-                  <destFileName>bigdata.war</destFileName>
-                </artifactItem>
-              </artifactItems>
-              <!-- other configurations here -->
-            </configuration>
-          </execution>
-        </executions>
-        </plugin>
-	<plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>build-helper-maven-plugin</artifactId>
-           <version>1.9.1</version>
-          <executions>
-            <execution>
-             <id>add-source</id>
-             <phase>generate-sources</phase>
-             <goals>
-              <goal>add-source</goal>
-             </goals>
-             <configuration>
-              <sources>
-                <source>src/test/java</source>
-              </sources>
-             </configuration>
-            </execution>
-          </executions>
-  	</plugin>
-     </plugins>
-    <extensions>
-      <!-- Enabling the use of SSH. -->
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-         <artifactId>wagon-ssh-external</artifactId>
-         <version>1.0-beta-6</version>
-      </extension>
-    </extensions>
-  </build>
-  <dependencies>
+   <dependencies>
  	<dependency>
  		<groupId>com.bigdata</groupId>
 		<artifactId>bigdata</artifactId>
 		<version>${blazegraph.version}</version>
 	</dependency>
-  	<dependency>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-client</artifactId>
-        <version>9.2.7.v20150116</version>
-    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -147,6 +59,26 @@
     	<groupId>com.blazegraph.sample</groupId>
     	<artifactId>sample-rdf-rules</artifactId>
     	<version>${project.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-server</artifactId>
+    	<version>9.3.4.RC0</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-client</artifactId>
+    	<version>9.3.4.RC0</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-xml</artifactId>
+    	<version>9.3.4.RC0</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-webapp</artifactId>
+    	<version>9.3.4.RC0</version>
     </dependency>
   </dependencies>
  	
