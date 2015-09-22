@@ -25,9 +25,9 @@ public class GlobalSecurityValidator {
 	private final Map<Value, List<Value>> securityInfo = new HashMap<Value, List<Value>>();
 	
 	
-	public GlobalSecurityValidator(Repository repo) {
+	public GlobalSecurityValidator(final Repository repo) {
 		
-			TupleQueryResult result;
+			final TupleQueryResult result;
 			try {
 				result = Utils.executeSelectQuery(repo, GRANTED_DOCUMENTS, QueryLanguage.SPARQL);
 			
@@ -62,7 +62,7 @@ public class GlobalSecurityValidator {
 		} 
 	
 	
-	public boolean validate(Value user, Value document){
+	public boolean validate(final Value user, final Value document){
 		
 		if(!securityInfo.containsKey(user)){
 			

@@ -59,7 +59,7 @@ public class SampleBlazegraphCustomFunctionEmbedded {
 		/*
 		 * Open a repository
 		 */
-		Properties props = new Properties();
+		final Properties props = new Properties();
 		props.put(Options.BUFFER_MODE, BufferMode.DiskRW); 
 		props.put(Options.FILE, "/tmp/blazegraph/test.jnl"); 
 		final BigdataSail sail = new BigdataSail(props);
@@ -69,7 +69,7 @@ public class SampleBlazegraphCustomFunctionEmbedded {
 		 * Register a new function
 		 */
 		
-		URI myFunctionURI = new URIImpl("http://www.example.com/validate");
+		final URI myFunctionURI = new URIImpl("http://www.example.com/validate");
 		
 		final FunctionRegistry.Factory securityFactory = new FunctionRegistry.Factory() {
 
@@ -87,7 +87,7 @@ public class SampleBlazegraphCustomFunctionEmbedded {
 			      final IValueExpression<? extends IV> document = AST2BOpUtility.toVE(context, globals, args[1]);
 						      
 			     
-			      GlobalSecurityValidator securityValidator = new GlobalSecurityValidator(repo);			      
+			      final GlobalSecurityValidator securityValidator = new GlobalSecurityValidator(repo);			      
 			     			      
 			      // Return your custom function.
 			      return new SecurityFilter(user, document, globals, securityValidator);
@@ -112,11 +112,11 @@ public class SampleBlazegraphCustomFunctionEmbedded {
 			 * Select all documents available to <http://www.example.com/John> 
 			 */
 			
-			String query = "SELECT ?doc " + // 
+			final String query = "SELECT ?doc " + // 
 					"{ ?doc rdf:type <http://www.example.com/Document> . " + //
 					" filter(<http://www.example.com/validate>(<http://www.example.com/John>, ?doc)) . }";
 								
-			TupleQueryResult result = Utils.executeSelectQuery(repo, query, QueryLanguage.SPARQL);
+			final TupleQueryResult result = Utils.executeSelectQuery(repo, query, QueryLanguage.SPARQL);
 			
 			try {
 				while(result.hasNext()){
