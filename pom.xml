@@ -30,6 +30,7 @@
 			<module>sample-sesame-remote</module>
 			<module>sample-rdf-rules</module>
 			<module>sample-btree</module>
+			<module>sample-customFunction-embedded</module>
 	</modules>
  	
 </project>
