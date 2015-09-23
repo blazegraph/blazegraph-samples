@@ -61,7 +61,7 @@ public class Utils {
 		try {
 			cxn.begin();
 			try {
-				InputStream is = SampleBlazegraphCustomFunctionEmbedded.class.getResourceAsStream(resource);
+				InputStream is = SampleBlazegraphCustomFunctionEmbedded.class.getClassLoader().getResourceAsStream(resource);
 				if (is == null) {
 					throw new IOException("Could not locate resource: " + resource);
 				}

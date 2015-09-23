@@ -29,16 +29,16 @@ public class GlobalSecurityValidator {
 		
 			final TupleQueryResult result;
 			try {
+				
 				result = Utils.executeSelectQuery(repo, GRANTED_DOCUMENTS, QueryLanguage.SPARQL);
-			
-			
+						
 				while(result.hasNext()){
 					
 					BindingSet bs = result.next();
 					
 					Binding user = bs.getBinding("user");
 					Binding document = bs.getBinding("doc");
-					
+										
 					if(securityInfo.containsKey(user)){
 												
 						securityInfo.get(user).add(document.getValue());
@@ -64,7 +64,7 @@ public class GlobalSecurityValidator {
 	
 	public boolean validate(final Value user, final Value document){
 		
-		if(!securityInfo.containsKey(user)){
+		if(securityInfo.containsKey(user)){
 			
 			if(securityInfo.get(user).contains(document)){				
 				return true;				

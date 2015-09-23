@@ -53,21 +53,59 @@ import com.bigdata.rdf.sparql.ast.eval.AST2BOpUtility;
 public class SampleBlazegraphCustomFunctionEmbedded {
 	
 	protected static final Logger log = Logger.getLogger(SampleBlazegraphCustomFunctionEmbedded.class);
+	
+	/*
+	 * Select all documents available to <http://www.example.com/John> 
+	 */
+	public static final String QUERY = "SELECT ?doc " + // 
+			"{ ?doc rdf:type <http://www.example.com/Document> . " + //
+			" filter(<http://www.example.com/validate>(<http://www.example.com/John>, ?doc)) . }";
 
 	public static void main(String[] args) throws OpenRDFException, IOException {
 		
-		/*
-		 * Open a repository
-		 */
+		final Repository repo = createRepository();
+		
+		registerCustomFunction(repo);
+			
+		try{
+			repo.initialize();
+			
+			/*
+			 * Load data from resources 
+			 * src/main/resources/data.n3
+			 */
+	
+			Utils.loadDataFromResources(repo, "data.n3", "");
+											
+			final TupleQueryResult result = Utils.executeSelectQuery(repo, QUERY, QueryLanguage.SPARQL);
+			
+			try {
+				while(result.hasNext()){
+					
+					BindingSet bs = result.next();
+					log.info(bs);
+					
+				}
+			} finally {
+				result.close();
+			}
+		} finally {
+			repo.shutDown();
+		}
+	}
+	
+	public static Repository createRepository(){
+		
 		final Properties props = new Properties();
 		props.put(Options.BUFFER_MODE, BufferMode.DiskRW); 
 		props.put(Options.FILE, "/tmp/blazegraph/test.jnl"); 
 		final BigdataSail sail = new BigdataSail(props);
 		final Repository repo = new BigdataSailRepository(sail);
+		return repo;
 		
-		/*
-		 * Register a new function
-		 */
+	}
+	
+	public static void registerCustomFunction(final Repository repo){
 		
 		final URI myFunctionURI = new URIImpl("http://www.example.com/validate");
 		
@@ -98,39 +136,6 @@ public class SampleBlazegraphCustomFunctionEmbedded {
 		
 		FunctionRegistry.add(myFunctionURI, securityFactory);
 		
-		try{
-			repo.initialize();
-			
-			/*
-			 * Load data from resources 
-			 * src/main/resources/data.n3
-			 */
-	
-			Utils.loadDataFromResources(repo, "/data.n3", "");
-			
-			/*
-			 * Select all documents available to <http://www.example.com/John> 
-			 */
-			
-			final String query = "SELECT ?doc " + // 
-					"{ ?doc rdf:type <http://www.example.com/Document> . " + //
-					" filter(<http://www.example.com/validate>(<http://www.example.com/John>, ?doc)) . }";
-								
-			final TupleQueryResult result = Utils.executeSelectQuery(repo, query, QueryLanguage.SPARQL);
-			
-			try {
-				while(result.hasNext()){
-					
-					BindingSet bs = result.next();
-					log.info(bs);
-					
-				}
-			} finally {
-				result.close();
-			}
-		} finally {
-			repo.shutDown();
-		}
 	}
 }
 
