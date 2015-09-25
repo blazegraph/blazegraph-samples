@@ -1,3 +1,4 @@
+package sample.sesame.first;
 /**
 
 Copyright (C) SYSTAP, LLC 2006-2015.  All rights reserved.
@@ -65,10 +66,10 @@ public class HelloBlazegraph {
 
 		try {
 			// prepare a statement
-			URIImpl subject = new URIImpl("http://blazegraph.com/Blazegraph");
-			URIImpl predicate = new URIImpl("http://blazegraph.com/says");
-			Literal object = new LiteralImpl("hello");
-			Statement stmt = new StatementImpl(subject, predicate, object);
+			final URIImpl subject = new URIImpl("http://blazegraph.com/Blazegraph");
+			final URIImpl predicate = new URIImpl("http://blazegraph.com/says");
+			final Literal object = new LiteralImpl("hello");
+			final Statement stmt = new StatementImpl(subject, predicate, object);
 
 			// open repository connection
 			RepositoryConnection cxn = repo.getConnection();
@@ -99,10 +100,10 @@ public class HelloBlazegraph {
 				final TupleQuery tupleQuery = cxn
 						.prepareTupleQuery(QueryLanguage.SPARQL,
 								"select ?p ?o where { <http://blazegraph.com/Blazegraph> ?p ?o . }");
-				TupleQueryResult result = tupleQuery.evaluate();
+				final TupleQueryResult result = tupleQuery.evaluate();
 				try {
 					while (result.hasNext()) {
-						BindingSet bindingSet = result.next();
+						final BindingSet bindingSet = result.next();
 						System.err.println(bindingSet);
 					}
 				} finally {

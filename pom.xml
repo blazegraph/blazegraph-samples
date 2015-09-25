@@ -2,12 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.blazegraph</groupId>
   <artifactId>samples</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.1</version>
   <packaging>pom</packaging>
   <name>Blazegraph Application Samples</name>
 
   <properties>
-	<blazegraph.version>1.5.2</blazegraph.version>
+	<blazegraph.version>1.5.3</blazegraph.version>
   </properties>
   
 	<repositories>
@@ -31,6 +31,7 @@
 			<module>sample-rdf-rules</module>
 			<module>sample-btree</module>
 			<module>sample-customFunction-embedded</module>
+			<module>sample-tests</module>
 	</modules>
  	
 </project>

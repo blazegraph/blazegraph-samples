@@ -29,20 +29,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 package sample.blueprints.embedded;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Properties;
+import java.io.InputStream;
 
 import org.apache.log4j.Logger;
-import org.openrdf.repository.RepositoryException;
-
 import com.bigdata.blueprints.BigdataGraph;
-import com.bigdata.blueprints.BigdataGraphEmbedded;
-import com.bigdata.journal.BufferMode;
-import com.bigdata.journal.Options;
-import com.bigdata.rdf.sail.BigdataSailRepository;
-import com.bigdata.rdf.sail.remote.BigdataSailFactory;
-import com.bigdata.rdf.sail.remote.BigdataSailFactory.Option;
-import com.bigdata.rdf.store.AbstractTripleStore;
+import com.bigdata.blueprints.BigdataGraphFactory;
 import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.util.io.graphml.GraphMLReader;
@@ -52,73 +43,38 @@ public class SampleBlazegraphBlueprintsEmbedded {
 	protected static final Logger log = Logger.getLogger(SampleBlazegraphBlueprintsEmbedded.class);
 	private static final String journalFile = "/tmp/blazegraph/test.jnl";
 	
-	public static void main(String[] args) throws IOException,
-			RepositoryException {
+	public static void main(String[] args) throws Exception {
 
-		final Properties props = new Properties();
-		
-		/*
-		 * For more configuration parameters see
-		 * http://www.blazegraph.com/docs/api/index.html?com/bigdata/journal/BufferMode.html
-		 */
-		props.put(Options.BUFFER_MODE, BufferMode.DiskRW);
-		
-		/*
-		 * Lax edges allows us to use non-unique edge identifiers
-		 */
-		props.setProperty(BigdataGraph.Options.LAX_EDGES, "true");
-
-		/*
-		 * SPARQL bottom up evaluation semantics can have performance impact.
-		 */
-		props.setProperty(AbstractTripleStore.Options.BOTTOM_UP_EVALUATION, "false");
-		props.put("com.bigdata.journal.AbstractJournal.file", journalFile);
-
-		BigdataSailRepository repo = getOrCreateRepository(props);
-
-		try {
-			final BigdataGraph g = new BigdataGraphEmbedded(repo);
-	
-			GraphMLReader.inputGraph(g, SampleBlazegraphBlueprintsEmbedded.class
-					.getResourceAsStream("/graph-example-1.xml"));
-	
-			for (Vertex v : g.getVertices()) {
-				log.info(v);
+			final BigdataGraph g = BigdataGraphFactory.create(journalFile);
+			
+			final InputStream is = SampleBlazegraphBlueprintsEmbedded.class
+					.getClassLoader().getResourceAsStream("graph-example-1.xml");
+			try {
+				
+				GraphMLReader.inputGraph(g, is);
+				
+			} finally {
+				is.close();
 			}
-			for (Edge e : g.getEdges()) {
-				log.info(e);
+			
+			try {
+	
+				for (final Vertex v : g.getVertices()) {
+					log.info(v);
+				}
+				for (final Edge e : g.getEdges()) {
+					log.info(e);
+				}
+				
+			} finally  {
+				
+				g.shutdown();	
+				
+				final File f = new File(journalFile);				
+				f.delete();
+				
 			}
-		} finally {
-			repo.shutDown();
-		}
+			
 	}
 	
-	private static BigdataSailRepository getOrCreateRepository(Properties props) throws RepositoryException {
-
-		BigdataSailRepository repo = null;
-
-		if (journalFile == null || !new File(journalFile).exists()) {
-
-			/*
-			 * No journal specified or journal does not exist yet at specified
-			 * location. Create a new store. (If journal== null an in-memory
-			 * store will be created.
-			 */
-			repo = BigdataSailFactory.createRepository(props, journalFile,
-					Option.TextIndex);
-
-		} else {
-
-			/*
-			 * Journal already exists at specified location. Open existing
-			 * store.
-			 */
-			repo = BigdataSailFactory.openRepository(journalFile);
-
-		}
-			
-		repo.initialize();
-			
-		return repo;
-	}
 }

@@ -52,7 +52,7 @@ public class SampleBlazegraphRDR {
 	
 	public static void main(String[] args) throws Exception  {
 	
-		final RemoteRepositoryManager repositoryManager = new RemoteRepositoryManager(serviceURL, true /*useLBS*/);
+		final RemoteRepositoryManager repositoryManager = new RemoteRepositoryManager(serviceURL, false /*useLBS*/);
 	
 		try{	
 		
@@ -67,16 +67,20 @@ public class SampleBlazegraphRDR {
 				log.info(String.format("Create namespace %s done", namespace));
 			}
 			
-			InputStream is = SampleBlazegraphRDR.class.getResourceAsStream("/rdr_test.ttl");
-			repositoryManager.getRepositoryForNamespace(namespace).add(new AddOp(is, RDFFormat.forMIMEType("application/x-turtle-RDR")));
+			final InputStream is = SampleBlazegraphRDR.class.getResourceAsStream("/rdr_test.ttl");
+			try{
+				repositoryManager.getRepositoryForNamespace(namespace).add(new AddOp(is, RDFFormat.forMIMEType("application/x-turtle-RDR")));
+			} finally {
+				is.close();
+			}
 			
 			//execute query
-			RemoteRepository r = repositoryManager.getRepositoryForNamespace(namespace);
-			IPreparedTupleQuery query = r.prepareTupleQuery("SELECT ?age ?src WHERE {?bob foaf:name \"Bob\" . <<?bob foaf:age ?age>> dc:source ?src .}");
-			TupleQueryResult result = query.evaluate();
+			final RemoteRepository r = repositoryManager.getRepositoryForNamespace(namespace);
+			final IPreparedTupleQuery query = r.prepareTupleQuery("SELECT ?age ?src WHERE {?bob foaf:name \"Bob\" . <<?bob foaf:age ?age>> dc:source ?src .}");
+			final TupleQueryResult result = query.evaluate();
 			try {
 				while (result.hasNext()) {
-					BindingSet bs = result.next();
+					final BindingSet bs = result.next();
 					log.info(bs);
 				}
 			} finally {
@@ -87,11 +91,11 @@ public class SampleBlazegraphRDR {
 		}
 	}
 	
-	private static boolean namespaceExists(String namespace, RemoteRepositoryManager repo) throws Exception{
-		GraphQueryResult res = repo.getRepositoryDescriptions();
+	private static boolean namespaceExists(final String namespace, final RemoteRepositoryManager repo) throws Exception{
+		final GraphQueryResult res = repo.getRepositoryDescriptions();
 		try{
 			while(res.hasNext()){
-				Statement stmt = res.next();
+				final Statement stmt = res.next();
 				if (stmt.getPredicate().toString().equals(SD.KB_NAMESPACE.stringValue())) {
 					if(namespace.equals(stmt.getObject().stringValue())){
 						log.info(String.format("Namespace %s already exists", namespace));

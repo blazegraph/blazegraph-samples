@@ -56,7 +56,7 @@ public class SampleBlazegraphSesameEmbedded {
 	public static void main(String[] args) throws IOException, OpenRDFException {
 
 		// load journal properties from resources
-		Properties props = loadProperties("/blazegraph.properties");
+		final Properties props = loadProperties("/blazegraph.properties");
 
 		// instantiate a sail
 		final BigdataSail sail = new BigdataSail(props);
@@ -72,13 +72,13 @@ public class SampleBlazegraphSesameEmbedded {
 	
 			loadDataFromResources(repo, "/data.n3", "");
 			
-			String query = "select * {<http://blazegraph.com/blazegraph> ?p ?o}";
-			TupleQueryResult result = executeSelectQuery(repo, query, QueryLanguage.SPARQL);
+			final String query = "select * {<http://blazegraph.com/blazegraph> ?p ?o}";
+			final TupleQueryResult result = executeSelectQuery(repo, query, QueryLanguage.SPARQL);
 			
 			try {
 				while(result.hasNext()){
 					
-					BindingSet bs = result.next();
+					final BindingSet bs = result.next();
 					log.info(bs);
 					
 				}
@@ -93,30 +93,36 @@ public class SampleBlazegraphSesameEmbedded {
 	/*
 	 * Load a Properties object from a file.
 	 */
-	public static Properties loadProperties(String resource) throws IOException {
-		Properties p = new Properties();
-		InputStream is = SampleBlazegraphSesameEmbedded.class
+	public static Properties loadProperties(final String resource) throws IOException {
+		final Properties p = new Properties();
+		final InputStream is = SampleBlazegraphSesameEmbedded.class
 				.getResourceAsStream(resource);
-		p.load(new InputStreamReader(new BufferedInputStream(is)));
+		final Reader reader  = new InputStreamReader(new BufferedInputStream(is));
+		try{
+			p.load(reader);
+		}finally{
+			reader.close();
+			is.close();
+		}
 		return p;
 	}
 
 	/*
 	 * Load data from resources into a repository.
 	 */
-	public static void loadDataFromResources(Repository repo, String resource, String baseURL)
+	public static void loadDataFromResources(final Repository repo, final String resource, final String baseURL)
 			throws OpenRDFException, IOException {
 
-		RepositoryConnection cxn = repo.getConnection();
+		final RepositoryConnection cxn = repo.getConnection();
 		
 		try {
 			cxn.begin();
 			try {
-				InputStream is = SampleBlazegraphSesameEmbedded.class.getResourceAsStream(resource);
+				final InputStream is = SampleBlazegraphSesameEmbedded.class.getResourceAsStream(resource);
 				if (is == null) {
 					throw new IOException("Could not locate resource: " + resource);
 				}
-				Reader reader = new InputStreamReader(new BufferedInputStream(is));
+				final Reader reader = new InputStreamReader(new BufferedInputStream(is));
 				try {
 					cxn.add(reader, baseURL, RDFFormat.N3);
 				} finally {
@@ -136,8 +142,8 @@ public class SampleBlazegraphSesameEmbedded {
 	/*
 	 * Execute sparql select query.
 	 */
-	public static TupleQueryResult executeSelectQuery(Repository repo, String query,
-			QueryLanguage ql) throws OpenRDFException  {
+	public static TupleQueryResult executeSelectQuery(final Repository repo, final String query,
+			final QueryLanguage ql) throws OpenRDFException  {
 
 		RepositoryConnection cxn;
 		if (repo instanceof BigdataSailRepository) {

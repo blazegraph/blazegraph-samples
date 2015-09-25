@@ -48,7 +48,7 @@ public class TestSample {
 		try{
 			repo.initialize();
 			
-			RepositoryConnection cxn = repo.getConnection();
+			final RepositoryConnection cxn = repo.getConnection();
 			
 			try {
 				cxn.begin();

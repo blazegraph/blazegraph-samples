@@ -3,31 +3,24 @@
   <parent>
     <groupId>com.blazegraph</groupId>
     <artifactId>samples</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.1</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <groupId>com.blazegraph.sample</groupId>
   <artifactId>sample-blueprints-remote</artifactId>
   <name>Blazegraph Blueprints Remote Sample</name>
-  
-  <repositories>
-	<repository>
-	   <id>bigdata.releases</id>
-	   <url>http://www.systap.com/maven/releases</url>
- 	</repository>
- 	</repositories>
- 	
+ 
  	<dependencies>
  		<dependency>
- 			<groupId>com.bigdata</groupId>
+	 		<groupId>com.bigdata</groupId>
 			<artifactId>bigdata</artifactId>
 			<version>${blazegraph.version}</version>
- 		</dependency>
+		</dependency>
  		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-client</artifactId>
 			<version>9.2.7.v20150116</version>
 		</dependency>
- 	</dependencies>
+	</dependencies>
  	
 </project>
