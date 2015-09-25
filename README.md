@@ -45,6 +45,11 @@ mvn package
 6. 'sample-rdr' - using RDF* and SPARQL* with Blazegraph™
   https://wiki.blazegraph.com/wiki/index.php/RDR
 
+7.  'sample-customFunction-embedded'- Custom Embedded Function
+
+8.  'sample-test' - Sample Unit Tests
+
+
 
 
 
