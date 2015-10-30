@@ -46,8 +46,10 @@ mvn package
   https://wiki.blazegraph.com/wiki/index.php/RDR
 
 7.  'sample-customFunction-embedded'- Custom Embedded Function
+    https://wiki.blazegraph.com/wiki/index.php/Custom_Function_embedded_mode
 
-8.  'sample-test' - Sample Unit Tests
+8.  'sample-test' - Sample Unit Tests <br>
+   technical project created for CI system
 
 
 
