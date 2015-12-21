@@ -31,6 +31,7 @@
 			<module>sample-rdf-rules</module>
 			<module>sample-btree</module>
 			<module>sample-customFunction-embedded</module>
+			<module>sample-customFunction-remote</module>
 			<module>sample-tests</module>
 	</modules>
  	

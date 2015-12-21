@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.blazegraph</groupId>
+    <artifactId>samples</artifactId>
+    <version>1.2-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <groupId>com.blazegraph.sample</groupId>
+  <artifactId>sample-customFunction-remote</artifactId>
+  <name>Blazegraph Custom Function Remote Sample</name>
+  
+  <dependencies>
+ 	<dependency>
+ 		<groupId>com.bigdata</groupId>
+		<artifactId>bigdata</artifactId>
+		<version>${blazegraph.version}</version>
+	</dependency>
+	 <dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-server</artifactId>
+    	<version>9.2.3.v20140905</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-client</artifactId>
+    	<version>9.2.3.v20140905</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-xml</artifactId>
+    	<version>9.2.3.v20140905</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.eclipse.jetty</groupId>
+    	<artifactId>jetty-webapp</artifactId>
+    	<version>9.2.3.v20140905</version>
+    </dependency>
+	<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+     </dependency>
+	</dependencies>
+ 	
+</project>

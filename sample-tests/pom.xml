@@ -50,6 +50,16 @@
     	<artifactId>sample-blueprints-embedded</artifactId>
     	<version>${project.version}</version>
     </dependency>
+     <dependency>
+    	<groupId>com.blazegraph.sample</groupId>
+    	<artifactId>sample-customFunction-embedded</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.blazegraph.sample</groupId>
+    	<artifactId>sample-customFunction-remote</artifactId>
+    	<version>${project.version}</version>
+    </dependency>
     <dependency>
     	<groupId>com.blazegraph.sample</groupId>
     	<artifactId>sample-btree</artifactId>
@@ -80,6 +90,7 @@
     	<artifactId>jetty-webapp</artifactId>
     	<version>9.2.3.v20140905</version>
     </dependency>
-  </dependencies>
+   
+   </dependencies>
  	
 </project>

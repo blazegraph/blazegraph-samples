@@ -54,6 +54,8 @@ public class SampleBlazegraphCustomFunctionEmbedded {
 	
 	protected static final Logger log = Logger.getLogger(SampleBlazegraphCustomFunctionEmbedded.class);
 	
+	public static final String journalFile = "/tmp/blazegraph/test.jnl";
+	
 	/*
 	 * Select all documents available to <http://www.example.com/John> 
 	 */
@@ -98,7 +100,7 @@ public class SampleBlazegraphCustomFunctionEmbedded {
 		
 		final Properties props = new Properties();
 		props.put(Options.BUFFER_MODE, BufferMode.DiskRW); 
-		props.put(Options.FILE, "/tmp/blazegraph/test.jnl"); 
+		props.put(Options.FILE, journalFile); 
 		final BigdataSail sail = new BigdataSail(props);
 		final Repository repo = new BigdataSailRepository(sail);
 		return repo;
