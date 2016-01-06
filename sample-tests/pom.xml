@@ -11,8 +11,8 @@
   <name>Blazegraph Samples Tests</name>
    <dependencies>
  	<dependency>
- 		<groupId>com.bigdata</groupId>
-		<artifactId>bigdata</artifactId>
+ 		<groupId>com.blazegraph</groupId>
+		<artifactId>bigdata-runtime</artifactId>
 		<version>${blazegraph.version}</version>
 	</dependency>
     <dependency>
