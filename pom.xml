@@ -1,3 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (C) SYSTAP, LLC DBA Blazegraph 2006-2016.  All rights reserved.
+
+Contact:
+     SYSTAP, LLC DBA Blazegraph
+     2501 Calvert ST NW #106
+     Washington, DC 20008
+     licenses@systap.com
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; version 2 of the License.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+Copyright 2010 by TalkingTrends (Amsterdam, The Netherlands)
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.blazegraph</groupId>
@@ -5,9 +30,71 @@
   <version>1.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Blazegraph Application Samples</name>
-
+  <licenses>
+    <license>
+      <name>GNU General Public License Version 2 (GPLv2)</name>
+      <url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+    </license>
+  </licenses>
+  <mailingLists>
+    <mailingList>
+      <name>Developer</name>
+      <subscribe>https://lists.sourceforge.net/lists/listinfo/bigdata-developers</subscribe>
+      <unsubscribe>https://lists.sourceforge.net/lists/listinfo/bigdata-developers</unsubscribe>
+      <archive>https://sourceforge.net/p/bigdata/mailman/bigdata-developers/</archive>
+    </mailingList>
+  </mailingLists>
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://jira.blazegraph.com/</url>
+  </issueManagement>
+  <scm>
+    <connection>scm:git:https://github.com/blazegraph/blazegraph-samples.git</connection>
+    <developerConnection>scm:git:git@github.com:blazegraph/blazegraph-samples.git</developerConnection>
+    <url>https://github.com/blazegraph/blazegraph-samples.git</url>
+  </scm>
+  <developers>
+    <developer>
+      <name>Bryan Thompson</name>
+      <email>bryan@blazegraph.com</email>
+      <organization>SYSTAP, LLC DBA Blazegraph</organization>
+      <organizationUrl>http://www.blazegraph.com</organizationUrl>
+    </developer>
+    <developer>
+      <name>Mike Personick</name>
+      <email>mike@blazegraph.com</email>
+      <organization>SYSTAP, LLC DBA Blazegraph</organization>
+      <organizationUrl>http://www.blazegraph.com</organizationUrl>
+    </developer>
+    <developer>
+      <name>Brad Bebee</name>
+      <email>beebs@blazegraph.com</email>
+      <organization>SYSTAP, LLC DBA Blazegraph</organization>
+      <organizationUrl>http://www.blazegraph.com</organizationUrl>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Igor Kim</name>
+      <email>igor.kim@ms2w.com</email>
+      <organization>MagInfo</organization>
+      <organizationUrl>http://www.maginfo.com/</organizationUrl>
+    </contributor>
+    <contributor>
+      <name>Rushan Shaymardanov</name>
+      <email>rushan.shaymardanov@maginfo.com</email>
+      <organization>MagInfo</organization>
+      <organizationUrl>http://www.maginfo.com/</organizationUrl>
+    </contributor>
+    <contributor>
+      <name>Mariya Kroxaleva</name>
+      <email>mariya.kroxaleva@maginfo.com</email>
+      <organization>MagInfo</organization>
+      <organizationUrl>http://www.maginfo.com/</organizationUrl>
+    </contributor>
+  </contributors>
   <properties>
-	<blazegraph.version>2.0.0-RC1</blazegraph.version>
+    <blazegraph.version>2.0.0-SNAPSHOT</blazegraph.version>
     <!--Dependency versions outside of the core Blazegraph runtime -->
     <icu.version>4.8</icu.version>
     <zookeeper.version>3.4.5</zookeeper.version>
@@ -44,30 +131,119 @@
     <servlet.version>3.1.0</servlet.version>
     <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  
-	<repositories>
-		<repository>
-		   <id>bigdata.releases</id>
-		   <url>http://www.systap.com/maven/releases</url>
-	 	</repository>
-		<repository>
-		   <id>bigdata.snapshots</id>
-		   <url>http://www.systap.com/maven/snapshots</url>
-	 	</repository>
-	</repositories>
- 	
-	<modules>
-			<module>sample-blueprints-embedded</module>
-			<module>sample-blueprints-remote</module>
-			<module>sample-rdr</module>
-			<module>sample-sesame-embedded</module>
-			<module>sample-sesame-first</module>
-			<module>sample-sesame-remote</module>
-			<module>sample-rdf-rules</module>
-			<module>sample-btree</module>
-			<module>sample-customFunction-embedded</module>
-			<module>sample-tests</module>
-	</modules>
- 	
+  </properties>  
+  <profiles>
+    <profile>
+      <id>maven-central</id>
+      <!-- 
+                Plugins for Maven Central Deployment 
+                See:  http://central.sonatype.org/pages/apache-maven.html 
+         -->
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <keyname>${gpg.keyname}</keyname>
+                  <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.3</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.9.1</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+    <profile>
+      <id>local-deploy</id>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>bigdata.snapshots</id>
+          <name>bigdata(R) snapshots</name>
+          <url>scpexe://www.systap.com/srv/www/htdocs/systap.com/maven/snapshots</url>
+          <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+      </distributionManagement>
+      <repositories>
+        <repository>
+          <id>bigdata.releases</id>
+          <url>http://www.systap.com/maven/releases/</url>
+        </repository>
+        <repository>
+          <id>bigdata.snapshots</id>
+          <url>http://www.systap.com/maven/snapshots/</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+  <repositories>
+    <!-- Need for testing Blazegraph releases -->
+    <repository>
+      <id>maven.snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>
+  </repositories>
+  <modules>
+    <module>sample-blueprints-embedded</module>
+    <module>sample-blueprints-remote</module>
+    <module>sample-rdr</module>
+    <module>sample-sesame-embedded</module>
+    <module>sample-sesame-first</module>
+    <module>sample-sesame-remote</module>
+    <module>sample-rdf-rules</module>
+    <module>sample-btree</module>
+    <module>sample-customFunction-embedded</module>
+    <module>sample-tests</module>
+  </modules>
 </project>
