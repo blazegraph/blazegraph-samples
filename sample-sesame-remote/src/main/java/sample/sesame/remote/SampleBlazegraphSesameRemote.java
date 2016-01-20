@@ -30,7 +30,10 @@ package sample.sesame.remote;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import com.bigdata.rdf.sail.webapp.SD;
 import com.bigdata.rdf.sail.webapp.client.ConnectOptions;
@@ -72,7 +75,8 @@ public class SampleBlazegraphSesameRemote {
 			} else {
 				log.info(String.format("Namespace %s already exists", namespace));
 			}
-
+			
+			
 			//get properties for namespace
 			log.info(String.format("Property list for namespace %s", namespace));
 			response = getNamespaceProperties(repo, namespace);

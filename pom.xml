@@ -131,7 +131,7 @@ Copyright 2010 by TalkingTrends (Amsterdam, The Netherlands)
     <servlet.version>3.1.0</servlet.version>
     <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>  
+  </properties>
   <profiles>
     <profile>
       <id>maven-central</id>
@@ -244,6 +244,7 @@ Copyright 2010 by TalkingTrends (Amsterdam, The Netherlands)
     <module>sample-rdf-rules</module>
     <module>sample-btree</module>
     <module>sample-customFunction-embedded</module>
+    <module>sample-customFunction-remote</module>
     <module>sample-tests</module>
   </modules>
 </project>

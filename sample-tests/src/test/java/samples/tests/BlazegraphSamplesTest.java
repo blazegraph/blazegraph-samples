@@ -20,6 +20,8 @@ import sample.btree.JournalTxExample;
 import sample.btree.ReadWriteIndexExample;
 import sample.btree.ReadWriteIndexTxExample;
 import sample.btree.TempStoreExample;
+import sample.customFunction.embedded.SampleBlazegraphCustomFunctionEmbedded;
+import sample.customFunction.remote.SampleBlazegraphCustomFunctionRemote;
 import sample.rdf.rules.TestSample;
 import sample.rdr.SampleBlazegraphRDR;
 import sample.sesame.embedded.SampleBlazegraphSesameEmbedded;
@@ -100,6 +102,13 @@ public class BlazegraphSamplesTest {
 	public void testSampleBlazegraphBlueprintsEmbedded() throws Exception{
 		
 		SampleBlazegraphBlueprintsEmbedded.main(null);
+	
+	}
+	
+	@Test
+	public void testSampleBlazegraphCustomFunctionRemote() throws Exception{
+		
+		SampleBlazegraphCustomFunctionRemote.main(null);
 	
 	}
 	
