@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -9,88 +10,22 @@
   <groupId>com.blazegraph.sample</groupId>
   <artifactId>sample-tests</artifactId>
   <name>Blazegraph Samples Tests</name>
-   <dependencies>
- 	<dependency>
- 		<groupId>com.blazegraph</groupId>
-		<artifactId>bigdata-runtime</artifactId>
-		<version>${blazegraph.version}</version>
-	</dependency>
+  <dependencies>
+    <dependency>
+      <groupId>com.blazegraph</groupId>
+      <artifactId>bigdata-core</artifactId>
+      <version>${blazegraph.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.blazegraph</groupId>
+      <artifactId>bigdata-blueprints</artifactId>
+      <version>${blazegraph.version}</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
-     </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-sesame-remote</artifactId>
-    	<version>${project.version}</version>
+      <scope>test</scope>
     </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-blueprints-remote</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-rdr</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-sesame-embedded</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-sesame-first</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-blueprints-embedded</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-     <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-customFunction-embedded</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-customFunction-remote</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-btree</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>com.blazegraph.sample</groupId>
-    	<artifactId>sample-rdf-rules</artifactId>
-    	<version>${project.version}</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.eclipse.jetty</groupId>
-    	<artifactId>jetty-server</artifactId>
-    	<version>9.2.3.v20140905</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.eclipse.jetty</groupId>
-    	<artifactId>jetty-client</artifactId>
-    	<version>9.2.3.v20140905</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.eclipse.jetty</groupId>
-    	<artifactId>jetty-xml</artifactId>
-    	<version>9.2.3.v20140905</version>
-    </dependency>
-    <dependency>
-    	<groupId>org.eclipse.jetty</groupId>
-    	<artifactId>jetty-webapp</artifactId>
-    	<version>9.2.3.v20140905</version>
-    </dependency>
-   
-   </dependencies>
- 	
+  </dependencies>
 </project>
