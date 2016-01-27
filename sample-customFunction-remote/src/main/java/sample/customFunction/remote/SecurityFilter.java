@@ -24,6 +24,7 @@ public class SecurityFilter extends XSDBooleanIVValueExpression
 	*/
 	public SecurityFilter(final SecurityFilter op) {
 		super(op);
+		this.validator = op.validator;
 	}
 	
 	/**
