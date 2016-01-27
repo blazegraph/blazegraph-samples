@@ -31,6 +31,12 @@ Copyright 2010 by TalkingTrends (Amsterdam, The Netherlands)
   <packaging>pom</packaging>
   <name>Blazegraph Application Samples</name>
   <description>Blazegraph Database sample applications for Blueprints, REST, Custom Functions, Rules, and more.  See https://wiki.blazegraph.com/wiki/index.php/Quick_Start.</description>
+  <url>https://www.blazegraph.com/learn</url>
+  <organization>
+    <name>SYSTAP, LLC DBA Blazegraph</name>
+    <url>http://www.systap.com/</url>
+  </organization>
+  <inceptionYear>2015</inceptionYear>
   <licenses>
     <license>
       <name>GNU General Public License Version 2 (GPLv2)</name>
