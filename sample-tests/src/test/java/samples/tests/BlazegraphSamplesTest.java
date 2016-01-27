@@ -99,13 +99,13 @@ public class BlazegraphSamplesTest {
 	}
 	
 // Disabled failing test
-//	@Test
-//	public void testSampleBlazegraphBlueprintsEmbedded() throws Exception{
-//		
-//		SampleBlazegraphBlueprintsEmbedded.main(null);
-//	
-//	}
-//	
+	@Test
+	public void testSampleBlazegraphBlueprintsEmbedded() throws Exception{
+		
+		SampleBlazegraphBlueprintsEmbedded.main(null);
+	
+	}
+	
 	@Test
 	public void testSampleBlazegraphCustomFunctionRemote() throws Exception{
 		

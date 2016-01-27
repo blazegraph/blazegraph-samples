@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.InputStream;
 
 import org.apache.log4j.Logger;
+
 import com.bigdata.blueprints.BigdataGraph;
 import com.bigdata.blueprints.BigdataGraphFactory;
 import com.tinkerpop.blueprints.Edge;
@@ -41,9 +42,15 @@ import com.tinkerpop.blueprints.util.io.graphml.GraphMLReader;
 public class SampleBlazegraphBlueprintsEmbedded {
 	
 	protected static final Logger log = Logger.getLogger(SampleBlazegraphBlueprintsEmbedded.class);
-	private static final String journalFile = "/tmp/blazegraph/test.jnl";
+	private static final String journalFile = "/tmp/testJournal-" + System.currentTimeMillis()
+			+ ".jnl";
 	
 	public static void main(String[] args) throws Exception {
+		
+			final File f = new File(journalFile);				
+			
+			//Make sure were starting with a clean file.
+			f.delete();
 
 			final BigdataGraph g = BigdataGraphFactory.create(journalFile);
 			
@@ -70,7 +77,6 @@ public class SampleBlazegraphBlueprintsEmbedded {
 				
 				g.shutdown();	
 				
-				final File f = new File(journalFile);				
 				f.delete();
 				
 			}
