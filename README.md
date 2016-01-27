@@ -1,5 +1,5 @@
 #Welcome to the Blazegraph Samples Project#
-Blazegraph™ is our ultra high-performance graph database supporting Blueprints and RDF/SPARQL APIs. It supports up to 50 Billion edges on a single machine and has a High Availability and Scale-out architecture. It is in production use for Fortune 500 customers such as EMC, Autodesk, and many others.  It powers the Wikimedia Foundation's Wiki Data Query Service.  See the latest [Feature Matrix](http://www.blazegraph.com/product/).
+The Blazegraph™ Database is our ultra high-performance graph database supporting Blueprints and RDF/SPARQL APIs. It supports up to 50 Billion edges on a single machine and has a High Availability and Scale-out architecture. It is in production use for Fortune 500 customers such as EMC, Autodesk, and many others.  It powers the Wikimedia Foundation's Wiki Data Query Service.  See the latest [Feature Matrix](http://www.blazegraph.com/product/).
 
 [Sign up](http://eepurl.com/VLpUj) to get the latest news on Blazegraph.  
 
@@ -11,6 +11,8 @@ Find an issue?   Need help?  See [JIRA](https://jira.blazegraph.com) or purchase
 
 # blazegraph-samples
 Samples for using Blazegraph™
+
+Link to the [Javadoc](https://blazegraph.github.io/blazegraph-samples/apidocs/index.html)
 
 To build everything run:
 
