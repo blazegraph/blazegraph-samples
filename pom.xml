@@ -30,6 +30,7 @@ Copyright 2010 by TalkingTrends (Amsterdam, The Netherlands)
   <version>2.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Blazegraph Application Samples</name>
+  <description>Blazegraph Database sample applications for Blueprints, REST, Custom Functions, Rules, and more.  See https://wiki.blazegraph.com/wiki/index.php/Quick_Start.</description>
   <licenses>
     <license>
       <name>GNU General Public License Version 2 (GPLv2)</name>

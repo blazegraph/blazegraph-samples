@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.blazegraph.sample</groupId>
   <artifactId>sample-blueprints-embedded</artifactId>
-  <name>Blazegraph Blueprints Embedded Sample </name>
+  <name>Blazegraph Blueprints Embedded Sample</name>
   <dependencies>
     <dependency>
       <groupId>com.blazegraph</groupId>
