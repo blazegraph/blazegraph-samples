@@ -94,7 +94,7 @@ Copyright 2010 by TalkingTrends (Amsterdam, The Netherlands)
     </contributor>
   </contributors>
   <properties>
-    <blazegraph.version>2.0.0-SNAPSHOT</blazegraph.version>
+    <blazegraph.version>2.0.0</blazegraph.version>
     <!--Dependency versions outside of the core Blazegraph runtime -->
     <icu.version>4.8</icu.version>
     <zookeeper.version>3.4.5</zookeeper.version>
